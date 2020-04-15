@@ -3,6 +3,3 @@ class Bike
         true
     end
 end
-
-bike = Bike.new
-bike.working?
