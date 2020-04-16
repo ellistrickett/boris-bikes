@@ -28,4 +28,11 @@ RSpec.describe DockingStation do
       expect{ subject.release_bike }.to raise_error 'no bikes in the docking station'
     end
   end
+
+  describe '#dock' do
+    it 'raises an error when full' do 
+      subject.dock(Bike.new)
+      expect { subject.dock Bike.new }.to raise_error 'Docking station full'
+    end
+  end
 end
