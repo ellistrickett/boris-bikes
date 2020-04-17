@@ -32,11 +32,7 @@ RSpec.describe DockingStation do
 
   describe '#dock' do
     it 'raises an error when full' do 
-<<<<<<< HEAD
       20.times {subject.dock(Bike.new)}
-=======
-      subject.dock(Bike.new)
->>>>>>> b43422d3747c8b84c56d03031414b82caa53daec
       expect { subject.dock Bike.new }.to raise_error 'Docking station full'
     end
   end
