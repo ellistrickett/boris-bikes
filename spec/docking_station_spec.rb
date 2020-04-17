@@ -4,6 +4,7 @@ RSpec.describe DockingStation do
     it { is_expected.to respond_to :release_bike }
   
     it 'releases working bikes' do
+      subject.dock(Bike.new)
       bike = subject.release_bike
       expect(bike).to be_working
     end
@@ -14,13 +15,13 @@ RSpec.describe DockingStation do
 
     it 'docks something' do 
       bike = Bike.new
-      expect(subject.dock(bike)).to eq bike
+      expect(subject.dock(bike)).to include bike
     end
 
     it 'returns docked bikes' do
-      bike = Bike.new
-      subject.dock(bike)
-      expect(subject.bike).to eq bike
+      subject.dock(Bike.new)
+      bike = subject.release_bike
+      expect(bike).to be_working
     end
     
   describe '#release_bike' do  
@@ -31,7 +32,7 @@ RSpec.describe DockingStation do
 
   describe '#dock' do
     it 'raises an error when full' do 
-      subject.dock(Bike.new)
+      20.times {subject.dock(Bike.new)}
       expect { subject.dock Bike.new }.to raise_error 'Docking station full'
     end
   end
